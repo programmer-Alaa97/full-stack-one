@@ -9,12 +9,14 @@ class Category extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['name'];
+
     public function items()
     {
         // return $this->belongsToMany('App\Item' );
 
                  return $this->belongsTo('App\Item' );
 
-        
+
     }
 }

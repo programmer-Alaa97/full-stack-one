@@ -17,13 +17,16 @@ class CreateItemsTable extends Migration
             $table->id();
             $table->string('name');
             $table->float('price');
-            $table->timestamps();
+
 
             $table->bigInteger( 'categoryID' )->unsigned();
             $table->foreign('categoryID')->references('id')->on('categories')->onDUpdate('cascade')->onDelete('cascade');
-             
-            $table->bigInteger( 'userID' )->unsigned();
-            $table->foreign('userID')->references('id')->on('users')->onDUpdate('cascade')->onDelete('cascade');
+
+            // $table->bigInteger( 'userID' )->unsigned();
+            // $table->foreign('userID')->references('id')->on('users')->onDUpdate('cascade')->onDelete('cascade');
+
+
+            $table->timestamps();
         });
     }
 

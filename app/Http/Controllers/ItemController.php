@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Item;
+use App\Models\Category;
 use Illuminate\Http\Request;
 
 class ItemController extends Controller
@@ -15,9 +16,9 @@ class ItemController extends Controller
     public function index()
     {
         $products = Item::latest()->paginate(4);
-       return view('product.index', compact('products'));
+        return view('product.index', compact('products'));
     }
-    
+
 
     /**
      * Show the form for creating a new resource.
@@ -26,7 +27,9 @@ class ItemController extends Controller
      */
     public function create()
     {
-        return view('product.create');
+        $catgories = Category::all();
+        return view('product.create', compact('catgories'));
+        // return view('product.create');
     }
 
     /**
@@ -41,13 +44,23 @@ class ItemController extends Controller
         // dd($request);
 
         $request->validate([
-            'name'=>'required',
-            'price'=>'required'
+            'name' => 'required',
+            'price' => 'required',
+            'categoryID' => 'required',
         ]);
 
-        $product = Item::create($request->all());
-         return redirect()->route('products.index')
-         ->with('success','product added successflly') ;
+        // $product = Item::create($request->all());
+
+        //when enable the login and auth
+        // $request['userID']=0;
+        Item::create([
+            'name' => $request->name,
+            'price' => $request->price,
+            'categoryID' => $request->categoryID,
+            // 'userID'=>0, //temprary commed from here and from the model for testing and the migration
+        ]);
+        return redirect()->route('products.index')
+            ->with('success', 'product added successflly');
     }
 
     /**
@@ -58,8 +71,7 @@ class ItemController extends Controller
      */
     public function show(Item $item)
     {
-        return view('item.show', compact('item'))  ;
-
+        return view('item.show', compact('item'));
     }
 
     /**
@@ -70,8 +82,7 @@ class ItemController extends Controller
      */
     public function edit(Item $item)
     {
-        return view('product.show', compact('product'))  ;
-
+        return view('product.show', compact('product'));
     }
 
     /**
@@ -84,14 +95,14 @@ class ItemController extends Controller
     public function update(Request $request, Item $item)
     {
         $request->validate([
-            'name'=>'required',
-            'price'=>'required',
-            'detail'=>'required'
+            'name' => 'required',
+            'price' => 'required',
+            'detail' => 'required'
         ]);
 
         $product->update($request->all());
-         return redirect()->route('products.index')
-         ->with('success','product updated successflly') ;
+        return redirect()->route('products.index')
+            ->with('success', 'product updated successflly');
     }
 
     /**
@@ -102,9 +113,9 @@ class ItemController extends Controller
      */
     public function destroy(Item $item)
     {
-     
+
         $product->delete();
         return redirect()->route('products.index')
-        ->with('success','product deleted successflly') ;
+            ->with('success', 'product deleted successflly');
     }
 }
