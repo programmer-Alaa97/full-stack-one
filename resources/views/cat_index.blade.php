@@ -1,10 +1,11 @@
+
+    <title> Benz </title>
 @extends('layouts.master')
 @section('css')
 @endsection
 @section('title')
     Benz
 @stop
-
 
 @section('content')
     <!-- food section -->
@@ -17,8 +18,6 @@
                 </h2>
             </div>
 
-
-
             <ul class="filters_menu">
                 @foreach ($categories as $category)
                     {{--  <li data-filter= your route ? id = {{$category->id}}>{{$category->name}}</li>  --}}
@@ -27,11 +26,10 @@
 
 
                     {{-- <li><a href="{{route('/category/{'.$category->id.'}')  }}">{{ $category->name }}</a></li> --}}
-                    <li><a href="{{ URL::to('category/' . $category->id) }}">{{ $category->name }}</a></li>
+                    <li><a href="{{ URL::to('category/'.$category->id ) }}">{{ $category->name }}</a></li>
                     {{-- <li><a href="{{ route('category/'.$category->id)  }}">{{ $category->name }}</a></li> --}}
                 @endforeach
             </ul>
-
 
             <div class="filters-content">
                 <div class="row grid">
@@ -45,10 +43,11 @@
                                     <div>
                                         <div class="img-box">
                                             <img src="{{ URL::asset('assets/images/f9.png') }}" alt="">
+
                                         </div>
                                         <div class="detail-box">
                                             <h5>
-                                                {{ $item->name }}
+                                                {{-- {{$item->name}} --}}
                                             </h5>
                                             <p>
                                                 Veniam debitis quaerat officiis quasi cupiditate quo, quisquam velit,
@@ -57,7 +56,7 @@
                                             </p>
                                             <div class="options">
                                                 <h6>
-                                                    {{ $item->price }} د.ع
+                                                    {{-- {{$item->price}} د.ع --}}
                                                 </h6>
 
                                             </div>
@@ -77,7 +76,6 @@
     </section>
 
     <!-- end food section -->
-
 
 @endsection
 @section('js')
