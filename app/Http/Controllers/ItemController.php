@@ -4,7 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Item;
 use App\Models\Category;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+
 
 class ItemController extends Controller
 {
@@ -29,7 +32,6 @@ class ItemController extends Controller
     {
         $catgories = Category::all();
         return view('product.create', compact('catgories'));
-        // return view('product.create');
     }
 
     /**
@@ -49,15 +51,12 @@ class ItemController extends Controller
             'categoryID' => 'required',
         ]);
 
-        // $product = Item::create($request->all());
-
-        //when enable the login and auth
-        // $request['userID']=0;
+       
         Item::create([
             'name' => $request->name,
             'price' => $request->price,
             'categoryID' => $request->categoryID,
-            // 'userID'=>0, //temprary commed from here and from the model for testing and the migration
+            'userID' => Auth()->user()->id,
         ]);
         return redirect()->route('products.index')
             ->with('success', 'product added successflly');
@@ -69,9 +68,9 @@ class ItemController extends Controller
      * @param  \App\Models\Item  $item
      * @return \Illuminate\Http\Response
      */
-    public function show(Item $item)
+    public function show(Item $product)
     {
-        return view('item.show', compact('item'));
+        return view('product.show', compact('product'));
     }
 
     /**
@@ -80,7 +79,7 @@ class ItemController extends Controller
      * @param  \App\Models\Item  $item
      * @return \Illuminate\Http\Response
      */
-    public function edit(Item $item)
+    public function edit(Item $product)
     {
         return view('product.show', compact('product'));
     }
@@ -92,7 +91,7 @@ class ItemController extends Controller
      * @param  \App\Models\Item  $item
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Item $item)
+    public function update(Request $request, Item $product)
     {
         $request->validate([
             'name' => 'required',
@@ -111,7 +110,7 @@ class ItemController extends Controller
      * @param  \App\Models\Item  $item
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Item $item)
+    public function destroy(Item $product)
     {
 
         $product->delete();
