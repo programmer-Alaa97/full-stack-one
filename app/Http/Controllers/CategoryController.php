@@ -25,7 +25,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        return view('categories.create');
+        return view('home');
     }
 
     /**
@@ -45,9 +45,9 @@ class CategoryController extends Controller
         $category->name = $request->name;
         $category->save();
 
-         
+
         return redirect()->route('categories.index')
-            ->with('success', 'product added successflly');
+            ->with('success', 'catecory added successflly');
     }
 
     /**

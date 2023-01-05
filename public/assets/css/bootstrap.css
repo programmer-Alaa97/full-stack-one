@@ -153,15 +153,43 @@ sup {
 }
 
 a {
-  color: #007bff;
+  color: black;
   text-decoration: none;
   background-color: transparent;
+  position: relative;
+  display: inline-block;
+
 }
 
-a:hover {
-  color: #0056b3;
-  text-decoration: underline;
+
+/* li a:is(:link, :active, :visited){
+   color: black;
+   text-decoration: none;
+   padding: 0.5rem 1.5rem;
 }
+
+
+
+a:is(:link, :active, :visited).active{
+
+    color: white;
+    background-color: black;
+} */
+
+/* a:hover:after {
+  width: 100%;
+}
+
+
+a::after{
+  content: "";
+  position: absolute;
+  background-color: #0F3D3E;
+  height: 3px;
+  width: 0;
+  left: 0;
+  bottom: -10px;
+} */
 
 a:not([href]):not([tabindex]) {
   color: inherit;

@@ -17,6 +17,7 @@ class CreateItemsTable extends Migration
             $table->id();
             $table->string('name');
             $table->float('price');
+            $table->string('photo');
 
 
             $table->bigInteger( 'categoryID' )->unsigned();

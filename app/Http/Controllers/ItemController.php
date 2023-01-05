@@ -49,17 +49,26 @@ class ItemController extends Controller
             'name' => 'required',
             'price' => 'required',
             'categoryID' => 'required',
+            'photo' => 'required|image'
+
         ]);
 
-       
+
+        $photo = $request->photo;
+        $photo_new_name = time().$photo->getClientOriginalName();
+        $photo->move('uploads/image',$photo_new_name);
+
         Item::create([
             'name' => $request->name,
             'price' => $request->price,
             'categoryID' => $request->categoryID,
-            'userID' => Auth()->user()->id,
+            'photo' => 'uploads/image/'.$photo_new_name,
+            'userID' => Auth()->user()->id
+
         ]);
         return redirect()->route('products.index')
             ->with('success', 'product added successflly');
+
     }
 
     /**

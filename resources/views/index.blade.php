@@ -3,6 +3,7 @@
 @endsection
 @section('title')
     Benz
+
 @stop
 
 
@@ -20,6 +21,8 @@
 
 
             <ul class="filters_menu">
+                <li><a href="{{ URL::to('/') }}">الكل</a></li>
+
                 @foreach ($categories as $category)
                     {{--  <li data-filter= your route ? id = {{$category->id}}>{{$category->name}}</li>  --}}
                     {{-- <li><a href=your route ? id={{ $category->id }}>{{ $category->name }}</a></li> --}}
@@ -27,7 +30,7 @@
 
 
                     {{-- <li><a href="{{route('/category/{'.$category->id.'}')  }}">{{ $category->name }}</a></li> --}}
-                    <li><a href="{{ URL::to('category/' . $category->id) }}">{{ $category->name }}</a></li>
+                    <li><a class="active" href="{{ URL::to('category/' . $category->id) }}">{{ $category->name }}</a></li>
                     {{-- <li><a href="{{ route('category/'.$category->id)  }}">{{ $category->name }}</a></li> --}}
                 @endforeach
             </ul>
@@ -44,17 +47,13 @@
                                 <div class="box">
                                     <div>
                                         <div class="img-box">
-                                            <img src="{{ URL::asset('assets/images/f9.png') }}" alt="">
+                                            <img src="{{$item->photo }}" alt="">
                                         </div>
                                         <div class="detail-box">
                                             <h5>
                                                 {{ $item->name }}
                                             </h5>
-                                            <p>
-                                                Veniam debitis quaerat officiis quasi cupiditate quo, quisquam velit,
-                                                magnam
-                                                voluptatem repellendus sed eaque
-                                            </p>
+
                                             <div class="options">
                                                 <h6>
                                                     {{ $item->price }} د.ع
@@ -81,4 +80,14 @@
 
 @endsection
 @section('js')
+
+<script>const activePage = window.location.pathname;
+    const navLinks = document.querySelectorAll('ul a').forEach(
+        link => {
+            if(link.href.includes(`${activePage}`)){
+                link.classList.add('active');
+            }
+        }
+    )</script>
+
 @endsection

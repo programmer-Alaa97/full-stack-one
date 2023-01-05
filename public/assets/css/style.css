@@ -1,6 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&amp;family=Open+Sans:wght@400;600;700&amp;display=swap");
 body {
-  font-family: "Open Sans", sans-serif;
+  font-family: sans-serif;
+  font-size: 20px;
   color: #0c0c0c;
   background-color: #ffffff;
   overflow-x: hidden;
@@ -543,6 +544,7 @@ a:focus {
 
 .food_section .box .detail-box h5 {
   font-weight: 600;
+  text-align: center;
 }
 
 .food_section .box .detail-box p {
@@ -551,6 +553,9 @@ a:focus {
 
 .food_section .box .detail-box h6 {
   margin-top: 10px;
+  text-align: center;
+  margin-right: 127px;
+
 }
 
 .food_section .box .options {

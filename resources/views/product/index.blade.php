@@ -3,15 +3,8 @@
 @section('content')
 
 
-<div class="jumbotron container">
 
-    <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
-    <a class="btn btn-primary btn-lg" href="{{ route('products.create')}}" role="button">Create  </a>
-
-  </div>
-
-
-  <div class="container">
+  <div class="container" style="margin-top: 100px">
       @if ($message = Session::get('success'))
       <div class="alert alert-primary" role="alert">
         {{$message}}
@@ -26,8 +19,9 @@
         <thead class="thead-dark">
           <tr>
             <th scope="col">#</th>
-            <th scope="col">Product name</th>
-            <th scope="col">Product price</th>
+            <th scope="col">اسم العنص</th>
+            <th scope="col">اسم السعر</th>
+            <th scope="col">الصوره</th>
             <th scope="col" style="width: 400px">Actions</th>
           </tr>
         </thead>
@@ -39,13 +33,16 @@
             <tr>
                 <th scope="row">{{++$i}}</th>
                 <td>{{ $item->name }}</td>
-                <td>{{ $item->price }} IQD  </td>
+                <td>{{ $item->price }} IQD </td>
+                <td> <img src="{{$item->photo}}"  class="img-thumbnail" width="100px" height="100px"> </td>
+
+
                 <td>
 
                     <div class="row">
 
                         <div class="col-sm">
-                            <a  class="btn btn-primary" href="{{ route('products.show',$item->id)}}"> Show</a>
+                            <a  class="btn btn-primary" href="{{ route('products.show',$item->id)}}"> عرض</a>
 
                         </div>
 
@@ -53,9 +50,19 @@
                             <form action="{{ route('products.destroy',$item->id)}}" method="POST">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="btn btn-danger"> Delete</button>
+                                <button type="submit" class="btn btn-danger"> حذف</button>
                                 </form>
-                        </div> 
+                        </div>
+
+                        <div class="col-sm">
+                            <a class="btn btn-primary btn" href="{{ route('products.create')}}" role="button">اضافة  </a>
+
+                        </div>
+
+                        <div class="col-sm">
+                            <a class="btn btn-success btn" href="{{ route('home')}}" role="button">الرئيسية  </a>
+
+                        </div>
                       </div>
 
 

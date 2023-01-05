@@ -8,6 +8,7 @@
 
     <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
     <a class="btn btn-primary btn-lg" href="{{ route('categories.create')}}" role="button">Create  </a>
+    <a class="btn btn-success btn-lg" href="{{ route('home')}}" role="button">Home  </a>
 
   </div>
 
@@ -50,7 +51,7 @@
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-danger"> Delete</button>
                                 </form>
-                        </div> 
+                        </div>
                       </div>
 
 
@@ -61,7 +62,7 @@
         </tbody>
       </table>
 
-    
+
   </div>
 
 @endsection

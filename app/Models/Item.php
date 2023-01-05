@@ -9,10 +9,17 @@ class Item extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name','price','categoryID',
+    protected $fillable = ['name','price','photo','categoryID',
     'userID'
 
     ];
+
+
+    public function getphotoAttribute($photo)
+    {
+        return asset($photo);
+    }
+
 
     public function categories()
     {
